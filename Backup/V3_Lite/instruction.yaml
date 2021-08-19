@@ -1,0 +1,41 @@
+---
+#TODO: phan tach = dau "-" cho "hoac"
+Global:
+  Start:
+    init_time: 2 #">2s"
+  Kill:
+    KeyPress: f4
+    #ActiveTime: 1000 #">1000"
+
+O.Clicker:
+  Name: Clicker1
+  
+  #ClickEvent: Click
+
+  TPS: 13 #
+
+  Button: rbutton
+  #Pos: [100, 100]
+
+  Condition:
+    #Box: [[500, 700], [500, 700]] #TODO: box not work
+    
+    ActiveWindow: Mincraft 1.8.9
+  
+    O.Switch:
+      SwitchSound: 10 #10%
+      SwitchEvent: x
+
+    KeyPress:  c #c
+
+  #Kill:
+  #  KeyPress: Ctrl+Shift+Esc
+  #  ActiveTime: 1000 #">1000"
+
+  PosPrecise: 0 #5pixel
+
+  
+
+# all can run parallel
+# if ClickEvent / PressEvent when button down:
+#  -> release button then ClickEvent / PressEvent

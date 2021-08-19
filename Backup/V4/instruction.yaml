@@ -1,0 +1,17 @@
+global:
+  start:
+    openWindow: Minecraft 1.8.9
+  kill:
+    endWindow: Minecraft 1.8.9
+
+o.clicker: 14-17 lbutton
+  condition:
+    keypress: mbutton
+    o.switch: F12
+    activeWindow: Minecraft 1.8.9
+
+o.clicker: 12-15 rbutton
+  condition:
+    keypress: c
+    o.switch: F12
+    activeWindow: Minecraft 1.8.9

@@ -1,0 +1,9 @@
+{
+
+   "Click2": {
+      "Type": "Click", 
+      "FPS" : 0.2,
+      "Button": "left"
+   },
+   "StopKey": ["F6"]
+}

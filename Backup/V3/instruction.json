@@ -1,0 +1,70 @@
+{
+  "Global": {
+    "Kill": [
+      {
+        "KeyPress": "Ctrl+Shift+Esc"
+      },
+      {
+        "run_time": ">1000"
+      }
+    ]
+  },
+  "O.Clicker": {
+    "Name": "Clicker1",
+    "ClickEvent": {
+      "Click_Record.yaml": null,
+      "Click": {
+        "Button": "Middle",
+        "Pos": [
+          100,
+          100
+        ],
+        "HoldTime": 0.1
+      }
+    },
+    "TPS": 5,
+    "Condition": {
+      "Box": [
+        [
+          100,
+          100
+        ],
+        [
+          200,
+          200
+        ]
+      ],
+      "ActiveWindow": "(716) YouTube - Brave",
+      "O.Switch": {
+        "Name": "Switch1",
+        "SwitchSound": "10%",
+        "SwitchEvent": {
+          "KeyPress": "c"
+        }
+      }
+    },
+    "Kill": {
+      "-KeyPress": "Ctrl+Shift+Esc",
+      "-ClickCount": ">1000"
+    },
+    "TimePrecise": "2ms",
+    "PosPrecise": "5 pixel",
+    "ClickSound": "10%"
+  },
+  "O.Typist": {
+    "Name": "Typist1",
+    "PressEvent": {
+      "Press": "a"
+    },
+    "TPS": 5
+  },
+  "O.Recorder": {
+    "Name": "Recorder1",
+    "RecordEvent": "D.ActiveWindow",
+    "Setting": {
+      "OnlyNewEvent": true,
+      "Log_Time": false
+    },
+    "Output": "Log.h"
+  }
+}

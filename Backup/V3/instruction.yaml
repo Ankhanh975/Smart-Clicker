@@ -1,0 +1,92 @@
+---
+# all can run parallel
+# if ClickEvent / PressEvent when button down:
+#  -> release button then ClickEvent / PressEvent
+
+Global:
+  Start:
+    init_time: ">2s"
+  Kill:
+    - KeyPress: Ctrl+Shift+Esc
+    - ActiveTime: ">1000"
+  O.Logger:
+	  LogEvent: 
+	  	Clicker1: #O.Clicker
+
+	  Output: Log.txt
+
+
+O.Clicker:
+  Name: Clicker1
+
+  ClickEvent:
+    Click_Record.yaml:  # C:/src/Python/Smart Clicker/V2/Test.h
+    # playback, error if data don't have D.Mouse object
+
+    Click: 
+      Button: Middle
+      Pos: [100, 100]
+      HoldTime: 0.1
+
+  TPS: 5
+  #ClickPerSec: 5
+  #ClickDelay: 1/5
+
+  Condition:
+    Box: [[100, 100], [200, 200]]
+
+    ActiveWindow: 
+      (716) YouTube - Brave
+
+    O.Switch:
+      SwitchSound: 10%
+      SwitchEvent:
+        KeyPress: c
+    KeyPress: v
+
+  Kill:
+    - KeyPress: Ctrl+Shift+Esc
+    - ClickCount: ">1000"
+    - ActiveTime: ">1000s"
+
+  TimePrecise: 2ms
+  PosPrecise: 5 pixel #random around click pos
+  #PosPrecise: 0.2 cm
+
+  ClickSound: 10%
+
+#O.Typist:
+#  Name: Typist1
+#  PressEvent: 
+#    Press: a
+#  TPS : 5
+
+O.Logger:
+  Name: Recorder1
+  LogEvent: 
+   D.ActiveWindow
+   D.ClipBoard
+   #D.MousePos
+   #D.MouseDown
+   #D.MouseUp
+   #D.MouseClick # Shuold Only D.MouseClick or D.MouseDown- D.MouseUp at 1 time
+   D.FullKeyUp_Down
+   #D.FullKeyUp
+   #D.FullKeyDown
+   #D.FullKeyPress
+   D.AllKeyStrokes
+   D.RAM
+   D.CPUTemperature
+   D.GPUTemperature
+   D.CPUTemperature
+   D.CPURun
+   D.GPURun
+   D.ConsumedPower
+  Setting:
+    OnlyNewEvent: True
+    #RealTime: False
+
+    Log_Time: False
+	 Kill:
+		 - OutputSize: ">1000bt"
+  Output: {"Log.yaml", "Log.json", "Log.txt"} #C:/src/Python/Smart Clicker/V2/Log.yaml

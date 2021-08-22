@@ -62,7 +62,7 @@ class ReadMinecreaftLog:
 		line = line.replace(line[0:12], "")
 		self.FiltedLog.append([time1, line])
 
-		print(time1, self.mode, self.Up_KIEM, self.Up_GIAP, self.ACTIVE_IT_TRAP, self.IT_TRAP, line, sep=",")
+		# print(time1, self.mode, self.Up_KIEM, self.Up_GIAP, self.ACTIVE_IT_TRAP, self.IT_TRAP, line, sep=",")
 		if "Hãy ??ng nh?p b?ng l?nh /login <m?t kh?u>" in line:
 			self.__init__()
 			self.mode = "3fmc Before Login"

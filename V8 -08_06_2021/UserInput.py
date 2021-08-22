@@ -20,6 +20,8 @@ class GetInput():
 		self.Global_HoldKey = self.getKeyState()
 		if frame%100 == 0:
 			self.Global_ActiveWindow = self.list_window_names()
+		
+		
 
 	def IsPressed(self, CheckKeyStrokes):
 	    for x in CheckKeyStrokes:

@@ -231,8 +231,8 @@ Console_Controller = Screen()
 LogReader = ReadMinecraftChat.ReadMinecreaftLog()
 HighPerformanceStuff = HighPerformStuff()
 LowPerformanceStuff = LowPerformStuff()
-Thread1 = ClickerThread("LeftClick", [14.5, 17.5], ["control", "x"], "mbutton", "lbutton")
-Thread2 = ClickerThread("RightClick", [13.5,15.5], ["control", "x"], "c", "rbutton" )
+Thread1 = ClickerThread("LeftClick", [14.5, 17.5], ["shift", "x"], "mbutton", "lbutton")
+Thread2 = ClickerThread("RightClick", [13.5,15.5], ["shift", "x"], "c", "rbutton" )
 Thread2.Switch.playsuond = False
 
 #scrollTheard = UserInput.getMinecraftSlot()

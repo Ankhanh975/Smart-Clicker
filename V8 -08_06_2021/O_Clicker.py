@@ -5,7 +5,7 @@ import random
 def fastclick(GlobalInput, button = "lbutton", x=None, y=None, duration = 0.005): #Click with VK_CODE, x and y use only for mouse_event
     # Create random
     pos = win32gui.GetCursorInfo()[2]
-    win32api.SetCursorPos((pos[0]+random.randint(-5, 5), pos[1]+random.randint(-5, 5)))
+    win32api.SetCursorPos((pos[0]+random.randint(-3, 3), pos[1]+random.randint(-3, 3)))
 
     def __Click(_ButtonDown: int, duration, _ButtonUp: int):
         win32api.mouse_event(_ButtonDown,0, 0)

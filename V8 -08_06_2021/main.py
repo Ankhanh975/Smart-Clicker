@@ -273,4 +273,4 @@ def Getinput():
 			print(f"You input: {a}")
 
 
-Thread(target=Getinput, daemon=True).start()
+Thread(target=Thread1.loop, daemon=True).start()

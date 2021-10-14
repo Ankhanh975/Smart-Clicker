@@ -135,13 +135,14 @@ def WhatToChat(LogReader, KeyPressed: int, mode=["Bedwars", "Skyblock"][0]):
 
         if LogReader.Up_KIEM == False:
             return ["up KIEM pls", "up KIEM nha", "up KIEM nhe", "up KIEM di", "up KIEM pls", "up KIEM"]
+            
         else:
             if LogReader.Up_GIAP == 3:
                 return ["up GIAP IV nua"]
             elif LogReader.Up_GIAP == 2:
                 return ["up GIAP III nua pls", "ai lay kc up GIAP III ho"]
             else:
-                return ["up GIAP pls"]
+                return ["up GIAP pls", "up GIAP nha", "up GIAP nhe", "up GIAP di", "up GIAP pls", "up GIAP"]
     elif KeyPressed == 3:
         if LogReader.ACTIVE_IT_TRAP == None:
             return ["ai bed?", "ai bed?", "ai bed day", "bed di nhe", "bed nha"]
@@ -155,10 +156,11 @@ def WhatToChat(LogReader, KeyPressed: int, mode=["Bedwars", "Skyblock"][0]):
         return ["@gg", "@gg", "@gg", "@GOOD GAME", "@good", "@non", "@gg'", "@sorry"]
     elif KeyPressed == 6:
         return ["/leave"]
+    elif KeyPressed == 7:
+        return ["/party invite"]
     elif KeyPressed == 0:
         return
-    else:
-        raise ValueError()
+
 
 
 class LowPerformStuff(RunThread):
@@ -188,7 +190,7 @@ class LowPerformStuff(RunThread):
             O_Clicker.fastclick("mbutton")
             return
 
-        for i in range(1, 7):
+        for i in range(1, 9):
             if userInput.IsPressed(["numpad"+str(i)]):
                 Control_KeyBoard(97+i-1, 0, win32con.KEYEVENTF_KEYUP, 0)
                 if self.ChatTime == 0 and i == 2:

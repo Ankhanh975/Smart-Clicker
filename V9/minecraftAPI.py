@@ -6,20 +6,22 @@ from win32api import keybd_event
 from time import perf_counter, sleep
 from Lib import _List
 import win32con
+from threading import Thread
 
 
-class OnChatMessage():
+class onChatMessage():
     file = "C:/Users/Admin/AppData/Roaming/.minecraft/logs/latest.log"
     sleepTime = 0
-    stop = False
+    running = True
 
     def __init__(self, callback):
         self.line = ""
         self.callback = callback
+        Thread(target=self.start).start()
 
     def start(self):
         with open(self.file, "r") as self.f:
-            while (not self.stop):
+            while self.running:
                 sleep(self.sleepTime)
                 self.line = self.f.readline()
 
@@ -35,16 +37,19 @@ class OnChatMessage():
                     # Sleep for 1/40 seconds if not reading anything new.
                     self.sleepTime = 1/40
 
+    def stop(self):
+        self.running = False
+
 
 def isFocused():
-    # if "Minecraft 1.8.9" in winAPIIn.getActiveWindowName():
-    if "V9" in winAPIIn.getActiveWindowName():
+    if "Minecraft 1.8.9" in winAPIIn.getActiveWindowName():
+        # if "V9" in winAPIIn.getActiveWindowName():
         return True
     else:
         return False
 
 
-def chat(self, text="."):
+def chat(text="."):
     # Type text: str to Minecraft console
     # Release all potentiality key can mess thing up
     KeyboardState = winAPIIn.getKeyboardState()

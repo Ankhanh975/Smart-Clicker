@@ -222,7 +222,7 @@ class Screen(RunThread):
         OsCmdControl("color 2d")
         OsCmdControl("title "+title)
         self.hwnd = win32gui.FindWindow(None, title)
-        # self.SelfResize()
+        self.SelfResize()
 
     def Stuff(self):
         Thread1Info = Thread1.info()

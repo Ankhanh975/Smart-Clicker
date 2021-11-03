@@ -6,27 +6,30 @@ from win32api import keybd_event
 from threading import Thread
 from Lib import _List
 import win32con
+import win32gui
+from time import perf_counter, sleep
+from os import system as OsCmd
 
 
 def LeftClick():
-    print("LeftClick")
+    # print("LeftClick")
 
     if not minecraftAPI.isFocused():
         return
     elif "mbutton" not in winAPIIn.getMouseState():
         return
-    print("==", end=" ")
+    print("==")
     winAPIOut.fastclick()
 
 
 def RightClick():
-    print("RightClick")
+    # print("RightClick")
     if not minecraftAPI.isFocused():
         return
     elif winAPIIn.getKeyState(0x43) == None:
         # If "c" is not pressed
         return
-    print("++", end=" ")
+    print("++")
 
     winAPIOut.fastclick(button="rbutton")
 
@@ -63,16 +66,65 @@ def console():
         a = a.lstrip().rstrip()
         if a != "":
             print(f"You input: {a}")
+            eval(a)
+
+
+def init():
+    def resizeConsole():
+        winSize = (500, 300)
+        hwnd = win32gui.FindWindow(None, "Auto Clicker")
+        x0, y0, x1, y1 = win32gui.GetWindowRect(hwnd)
+        win32gui.MoveWindow(hwnd, x0, y0,
+                            winSize[0], winSize[1], True)
+    OsCmd("title "+"Auto Clicker")
+    OsCmd("color 2d")
+    resizeConsole()
+
+
+def more():
+    # run 30 time a second
+    if winAPIIn.getKeyState(0x73) != None:
+        # Pressed F4
+        print("Press F4 to continue...")
+        id1.stop()
+        id2.stop()
+        id3.stop()
+        id4.stop()
+        id5.stop()
+        return
+    elif False:
+        pass
+    if not minecraftAPI.isFocused():
+        return
+    elif winAPIIn.getKeyState(0x4C) and winAPIIn.getKeyState(0xA2):
+
+        # Login to server 3fmc.com
+        minecraftAPI.chat("/l ak2006@@")
+        sleep(1/3.5)
+        winAPIOut.fastclick("lbutton")
+        sleep(1/60)
+    else:
+        numpad = [0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69]
+        for keyCode in numpad:
+            if winAPIIn.getKeyState(keyCode):
+                minecraftAPI.chat(":)")
+                # release key pressed
+                keybd_event(keyCode, 0, win32con.KEYEVENTF_KEYUP, 0)
+                sleep(1/30)
+                keybd_event(keyCode, 0, win32con.KEYEVENTF_KEYUP, 0)
+
+
+log = []
+
 
 def onChatMessage(text):
     print(text)
 
-# setInterval(LeftClick, 1000/17.5, randomMs=1000/14.5-1000/17.5)
-# setInterval(RightClick, 1000/15, randomMs=1000/15-1000/13)
-# setInterval(zoom, 1000.0/60)
-# Thread(target=console, daemon=True).start()
 
-log = []
-
-x = minecraftAPI.OnChatMessage(onChatMessage)
-Thread(target=x.start, daemon=True).start()
+init()
+id1 = setInterval(LeftClick, 1000/17.5, randomMs=1000/14.5-1000/17.5)
+id2 = setInterval(RightClick, 1000/15, randomMs=1000/15-1000/13)
+id3 = setInterval(zoom, 16.6)
+id4 = setInterval(more, 33.3)
+id5 = minecraftAPI.onChatMessage(onChatMessage)
+Thread(target=console, daemon=True).start()

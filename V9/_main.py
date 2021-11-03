@@ -13,6 +13,8 @@ class setInterval:
     # https://stackoverflow.com/questions/2697039/python-equivalent-of-setinterval/14035296
     # use: setInterval(callback, ms, timeout)
     # random FPS value if FPS is a List[2]
+    running = True
+    FPS = 0
 
     def __init__(self, callback, interval, timeout=float("inf"), randomMs=0):
         self.interval = interval / 1000.0
@@ -37,14 +39,19 @@ class setInterval:
         else:
             loopTime = 10**100
         for _ in range(loopTime):
+            self.FPS = self.clock.get_fps()
             # Make interval more random.
-
+        
             randomSleepTime = uniform(0, self.randomMs)
             self.clock.tick(1.0/(self.interval-randomSleepTime))
             self.callback()
             # print("Interval", randomSleepTime, 1.0 /
             #       (self.interval+randomSleepTime))
-            
+            if self.running == False:
+                return
+                
+    def stop(self):
+        self.running = False
 # class OnChatMessage():
 #     file = "C:\\Users\\Admin\\AppData\\Roaming\\.minecraft\\logs\\latest.log"
 #     sleepTime = 0

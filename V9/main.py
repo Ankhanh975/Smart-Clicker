@@ -82,6 +82,8 @@ def init():
 
 
 def more():
+    print("more...")
+    
     # run 30 time a second
     if winAPIIn.getKeyState(0x73) != None:
         # Pressed F4
@@ -92,8 +94,11 @@ def more():
         id4.stop()
         id5.stop()
         return
-    elif False:
-        pass
+    else:
+        print("more...")
+        OsCmd("cls")
+        print(id1.FPS, id2.FPS)
+        
     if not minecraftAPI.isFocused():
         return
     elif winAPIIn.getKeyState(0x4C) and winAPIIn.getKeyState(0xA2):

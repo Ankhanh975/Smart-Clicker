@@ -67,20 +67,37 @@ def zoom():
 def console():
     # Make console still available to run commands
     while True:
-        a = input("")
+        a = input(">>> ")
         a = a.lstrip().rstrip()
         if a != "":
-            print(f"You input: {a}")
-            eval(a)
+            try:
+                x=eval(a)
+                print(x)
+            except Exception as p:
+                print(p)
 
 
 def init():
-    def resizeConsole():
-        winSize = (500, 300)
+    from sys import exit as ThreadExit
+
+    if "Auto Clicker" in winAPIIn.getWindowNames():
+        # anthor instance is running
+        O_Sound.ErrorSound.play()
+        OsCmd("color c7")
+        OsCmd("mode con cols=30 lines=6")
+        OsCmd("title "+"Auto Clicker")
+
+        print("Already open this program.")
+        sleep(4)
+        ThreadExit()  # Stop everything because no thread started yet
+
+    def resizeConsole(winSize=(500, 300)):
+
         hwnd = win32gui.FindWindow(None, "Auto Clicker")
         x0, y0, x1, y1 = win32gui.GetWindowRect(hwnd)
         win32gui.MoveWindow(hwnd, x0, y0,
                             winSize[0], winSize[1], True)
+
     OsCmd("title "+"Auto Clicker")
     OsCmd("color 2d")
     resizeConsole()
@@ -96,37 +113,36 @@ def more():
         # Pressed F4
         print("Press F4 to continue...")
         O_Sound.ExitSound.play()
-        id1.stop()
-        id2.stop()
-        id3.stop()
-        id4.stop()
-        id5.stop()
+        for id in (id1, id2, id3, id4, id5):
+            id.stop()
+
         return
     else:
         line1 = minecraftAPI.isFocused()
         if line1 == True:
             if perf_counter()-lastLeftClick < 0.1:
-                line2 = f" |LClick| {id1.FPS} CPS| \n"
+                line2 = f" |LClick| {id1.FPS} CPS | \n"
             else:
-                line2 = f" |LClick| NA| \n"
+                line2 = f" |LClick|  0 CPS | \n"
 
             if perf_counter()-lastRightClick < 0.1:
-                line3 = f" |LClick| {id2.FPS} CPS| \n"
+                line3 = f" |RClick| {id2.FPS} CPS | \n"
             else:
-                line3 = f" |LClick| NA| \n"
+                line3 = f" |RClick|  0 CPS | \n"
         else:
-            line2 = line3 = ""
-        line1 = f" |Focus | {line1}| \n"
+            line2 = line3 = "\n"
+        line1 = f" |Focus |  {line1}  | \n"
 
         newFrame = "\n"
         newFrame += line1
         newFrame += line2
         newFrame += line3
+        newFrame += ">>> "
 
         if newFrame != ConsoleScreen:
             ConsoleScreen = newFrame
             OsCmd("cls")
-            print(newFrame)
+            print(newFrame, end="")
 
     if not minecraftAPI.isFocused():
         return
@@ -148,8 +164,6 @@ def more():
                 keybd_event(keyCode, 0, win32con.KEYEVENTF_KEYUP, 0)
                 sleep(1/30)
                 keybd_event(keyCode, 0, win32con.KEYEVENTF_KEYUP, 0)
-
-
 
 
 init()

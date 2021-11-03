@@ -46,7 +46,7 @@ def isFocused():
     if "Minecraft 1.8.9" in winAPIIn.getActiveWindowName():
         return True
         
-    elif "V9" in winAPIIn.getActiveWindowName():
+    elif "V9" == winAPIIn.getActiveWindowName():
         return True
     else:
         return False

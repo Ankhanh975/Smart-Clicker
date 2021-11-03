@@ -31,6 +31,13 @@ class setInterval:
             self.clock.tick(self.FPS)
             self.callback()
 
+def Sleepp(duration):  # High accurate sleep
+    now = time.perf_counter()
+    end = now + duration
+    while now < end:
+        if end-now >= 1/61:
+            time.sleep(1/1000)
+        now = time.perf_counter()
 
 if __name__ == "__main__":
     pass

@@ -1,3 +1,4 @@
+import win32api
 from Lib import _List
 from win32api import keybd_event
 import win32con
@@ -5,6 +6,8 @@ import ctypes
 import time
 
 # pygame.time.delay()
+
+
 def Sleepp(duration):  # High accurate sleep
     now = time.perf_counter()
     end = now + duration
@@ -495,15 +498,16 @@ if __name__ == '__main__':
     press("backspace")
     typer("Hello World")
     press("enter")
-    
-def fastclick(button = "lbutton", duration = 0.005): 
-    #Click 
+
+
+def fastclick(button="lbutton", duration=0.005):
+    # Click
     if button.lower() == "lbutton":
         _ButtonDown, _ButtonUp = win32con.MOUSEEVENTF_LEFTDOWN, win32con.MOUSEEVENTF_LEFTUP
     elif button.lower() == "rbutton":
         _ButtonDown, _ButtonUp = win32con.MOUSEEVENTF_RIGHTDOWN, win32con.MOUSEEVENTF_RIGHTUP
     elif button.lower() == "mbutton":
         _ButtonDown, _ButtonUp = win32con.MOUSEEVENTF_MIDDLEDOWN, win32con.MOUSEEVENTF_MIDDLEUP
-    win32api.mouse_event(_ButtonDown,0, 0)
-    Sleepp(duration) 
+    win32api.mouse_event(_ButtonDown, 0, 0)
+    Sleepp(duration)
     win32api.mouse_event(_ButtonUp, 0, 0)

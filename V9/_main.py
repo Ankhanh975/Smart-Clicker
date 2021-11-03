@@ -17,7 +17,7 @@ class setInterval:
     def __init__(self, callback, interval, timeout=float("inf"), randomMs=0):
         self.interval = interval / 1000.0
         self.timeout = timeout/1000.0
-        self.FPS = 1.0 / self.interval
+        1.0 / self.interval
         # Limit -interval <= randomMs <= interval
         if randomMs >= 0:
             self.randomMs = min(randomMs, interval)/1000.0
@@ -38,9 +38,32 @@ class setInterval:
             loopTime = 10**100
         for _ in range(loopTime):
             # Make interval more random.
-            if self.randomMs()==0:
-                randomSleepTime=0
-            else:
-                randomSleepTime = uniform(0, 1000.0/self.randomMs)
-            self.clock.tick(self.FPS-randomSleepTime)
+
+            randomSleepTime = uniform(0, self.randomMs)
+            self.clock.tick(1.0/(self.interval-randomSleepTime))
             self.callback()
+            # print("Interval", randomSleepTime, 1.0 /
+            #       (self.interval+randomSleepTime))
+            
+# class OnChatMessage():
+#     file = "C:\\Users\\Admin\\AppData\\Roaming\\.minecraft\\logs\\latest.log"
+#     sleepTime = 0
+#     stop = False
+
+#     def __init__(self, callback):
+#         self.id = []
+#         self.chatHistory = []
+#         # self.chatHistory.append(text)
+
+#     def addListener(self, callback):
+#         self.id.append(id(callback))
+
+#     def hasListener(self, callback):
+#         if (id(callback) in self.id):
+#             return True
+#         else:
+#             return False
+
+#     def removeListener(self, callback):
+#         self.id.remove(id(callback))
+#     # callback(self.chat)

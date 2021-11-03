@@ -1,3 +1,8 @@
+from pygame.mixer import Sound as pygameSound
+from pygame.mixer import init as pygameInit
+
+
+
 import threading
 # from threading import Timer, Event, Thread
 from random import uniform
@@ -42,7 +47,7 @@ class setInterval:
             self.FPS = self.clock.get_fps()
             self.FPS = round(self.FPS)
             # Make interval more random.
-        
+
             randomSleepTime = uniform(0, self.randomMs)
             self.clock.tick(1.0/(self.interval+randomSleepTime))
             self.callback()
@@ -50,7 +55,7 @@ class setInterval:
             #       (self.interval+randomSleepTime))
             if self.running == False:
                 return
-                
+
     def stop(self):
         self.running = False
 # class OnChatMessage():
@@ -75,3 +80,26 @@ class setInterval:
 #     def removeListener(self, callback):
 #         self.id.remove(id(callback))
 #     # callback(self.chat)
+
+
+class Sound:
+    def __init__(self):  # A place to save all suond
+        pygameInit(44100, -16, 2, 64)
+        # TODO: loop sound with getter in aready suond lib
+        self.PressSound = pygameSound("Resources/Press2.mp3")
+        self.PressSound.set_volume(0.2)
+        self.PressSound.fadeout(50)
+        self.ClickSound = pygameSound("Resources/Press2.mp3")
+        self.ClickSound.set_volume(0.2)
+        self.ClickSound.fadeout(50)
+        self.ExitSound = pygameSound("Resources/Press1.mp3")
+        self.ErrorSound = pygameSound("Resources/Error_Sound.mp3")
+        self.ErrorSound.set_volume(0.2)
+        self.ErrorSound.fadeout(50)
+        self.StartSound = pygameSound("Resources/On.mp3")
+        self.StartSound.set_volume(0.2)
+        self.StartSound.fadeout(50)
+
+
+O_Sound = Sound()
+O_Sound.StartSound.play()

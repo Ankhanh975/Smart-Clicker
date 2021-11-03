@@ -1,13 +1,17 @@
-CHAT = ["ra KC di", "lay kc nhe", "ra KC nhe"]
+import winAPIOut
+import minecraftAPI
+from time import perf_counter, sleep
+from random import choice, shuffle
 
 
-def WhatToChat(numpad):
+def __WhatToChat(numpad):
     if numpad == 0:
         return [-1]
     elif numpad == 1:
         return ["@hmm", "@v. ", "@c", "@cc?", "@?", "@v", "@:<", "@ghe vay", "@tu tu thoi"]
     elif numpad == 2:
-        return ["up KIEM pls", "up KIEM nha", "up KIEM nhe", "up KIEM di", "up KIEM pls", "up KIEM"]
+        CHAT = ["ra KC di", "lay kc nhe", "ra KC nhe"]
+        return ["up KIEM pls", "up KIEM nha", "up KIEM nhe", "up KIEM di", "up KIEM pls", "up KIEM"]+CHAT
         # if LogReader.Up_KIEM == False:
         #     return ["up KIEM pls", "up KIEM nha", "up KIEM nhe", "up KIEM di", "up KIEM pls", "up KIEM"]
 
@@ -34,3 +38,73 @@ def WhatToChat(numpad):
         return ["/party invite"]
     elif numpad == 8:
         return ["/friend list"]
+
+
+lastChat = ""
+
+
+def WhatToChat(numpad):
+    global lastChat
+    all = __WhatToChat(numpad)
+    shuffle(all)
+    for x in all:
+        any = x
+        if lastChat != any:
+            break
+    lastChat = any
+    return any
+
+
+log = []
+mode = "None"
+Up_KIEM = False
+Up_GIAP = 0
+IT_TRAP = 0
+
+
+def onChatMessage(text):
+    global mode, Up_KIEM, Up_GIAP, IT_TRAP
+    log.append(text)
+
+    if "? ??ng nh?p thành công!" in text:
+        sleep(1/15)
+        winAPIOut.fastclick("rbutton")
+        sleep(1/60)
+
+    elif "GoldAppleVn ?ã vào tr?n ??u" in text or "Green_Apple_Vn ?ã vào tr?n ??u" in text:
+        mode = "None"
+
+        Up_KIEM = False
+        Up_GIAP = 0
+        IT_TRAP = 0
+    if not minecraftAPI.isFocused():
+        return
+    elif "??i th?. Nâng c?p v? khí và trang b? b?ng" in text:
+        if "B?o v? gi??ng c?a b?n và phá gi??ng c?a" in log[-2][1]:
+            mode = "PLAY"
+
+    elif "Discord https://discord.gg/Zehw9wP" in text and len(log) > 5:
+        if "Facebook" in log[-2][1]:
+            if "MAKE 3F GREAT AGAIN" in log[-3][1]:
+                sleep(1/15)
+                winAPIOut.fastclick("rbutton")
+                sleep(1/60)
+
+    elif "?ã mua Sharpened Swords" in text:
+        Up_KIEM = True
+    elif "?ã mua Reinforced Armor" in text:
+        text = text.split("?ã mua Reinforced Armor ")[1]
+        if text == "I":
+            Up_GIAP = 1
+        elif text == "II":
+            Up_GIAP = 2
+        elif text == "III":
+            Up_GIAP = 3
+        elif text == "IV":
+            Up_GIAP = 4
+
+    elif "It's a trap! ?ã ???c kích ho?t!" in text:
+        pass
+
+    elif "?ã mua It's a trap!" in text:
+        IT_TRAP = 1

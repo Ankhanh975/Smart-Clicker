@@ -32,6 +32,7 @@ class onChatMessage():
                         self.line = self.line.replace(
                             "[Client thread/INFO]: [CHAT]", "")
                         self.line = self.line.replace("\n", "")
+                        self.line = self.line.replace(self.line[0:12], "")
                         self.callback(self.line)
                 elif self.line == "":
                     # Sleep for 1/40 seconds if not reading anything new.
@@ -42,14 +43,16 @@ class onChatMessage():
 
 
 def isFocused():
-    # if "Minecraft 1.8.9" in winAPIIn.getActiveWindowName():
-    if "V9" in winAPIIn.getActiveWindowName():
+    if "Minecraft 1.8.9" in winAPIIn.getActiveWindowName():
+        return True
+        
+    elif "V9" in winAPIIn.getActiveWindowName():
         return True
     else:
         return False
 
 
-def chat(text="."):
+def chat(text=".", RePress=True):
     # Type text: str to Minecraft console
     # Release all potentiality key can mess thing up
     KeyboardState = winAPIIn.getKeyboardState()
@@ -84,14 +87,15 @@ def chat(text="."):
     # Close chat
     winAPIOut.press("enter")
     winAPIOut.Sleepp(1/25)
-
-    # press back Released key
-    for i in KeyboardState:
-        winAPIOut.Sleepp(1/500)
-        try:
-            keybd_event(_List.VK_CODE[i], 0, 0, 0)
-        except KeyError as p:
-            print(p)
+    
+    if RePress==True:
+        # press back Released key
+        for i in KeyboardState:
+            winAPIOut.Sleepp(1/500)
+            try:
+                keybd_event(_List.VK_CODE[i], 0, 0, 0)
+            except KeyError as p:
+                print(p)
 
 
 def takeScreenShot(self):

@@ -9,6 +9,7 @@ import win32con
 import win32gui
 from time import perf_counter, sleep
 from os import system as OsCmd
+from response import onChatMessage
 
 lastLeftClick = perf_counter()
 lastRightClick = perf_counter()
@@ -94,6 +95,7 @@ def more():
     if winAPIIn.getKeyState(0x73) != None:
         # Pressed F4
         print("Press F4 to continue...")
+        O_Sound.ExitSound.play()
         id1.stop()
         id2.stop()
         id3.stop()
@@ -131,30 +133,23 @@ def more():
     elif winAPIIn.getKeyState(0x4C) and winAPIIn.getKeyState(0xA2):
 
         # Login to server 3fmc.com
-        minecraftAPI.chat("/l ak2006@@")
-        sleep(1/3.5)
-        winAPIOut.fastclick("lbutton")
-        sleep(1/60)
+        minecraftAPI.chat("/l ak2006@@", RePress=False)
+
     else:
         from response import WhatToChat
-        from random import choice
+
         numpad = [0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69]
         for keyCode in numpad:
             if winAPIIn.getKeyState(keyCode):
                 print("Got key: " + keyCode)
                 whatToChat = WhatToChat(keyCode-0x60)
-                minecraftAPI.chat(choice(whatToChat))
+                minecraftAPI.chat(whatToChat, RePress=False)
                 # release key pressed
                 keybd_event(keyCode, 0, win32con.KEYEVENTF_KEYUP, 0)
                 sleep(1/30)
                 keybd_event(keyCode, 0, win32con.KEYEVENTF_KEYUP, 0)
 
 
-log = []
-
-
-def onChatMessage(text):
-    log.append(text)
 
 
 init()

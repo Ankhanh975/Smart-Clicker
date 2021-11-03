@@ -1,6 +1,5 @@
 import _List, win32api, win32con, win32gui
 import resorce
-import random
 
 def fastclick(GlobalInput, button = "lbutton", x=None, y=None, duration = 0.005): #Click with VK_CODE, x and y use only for mouse_event
     # Create random

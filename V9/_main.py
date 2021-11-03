@@ -1,5 +1,6 @@
-import time
 import threading
+# from threading import Timer, Event, Thread
+from random import uniform
 from pygame.time import Clock as pygameClock
 
 
@@ -11,10 +12,17 @@ def setTimeout(callback, ms):
 class setInterval:
     # https://stackoverflow.com/questions/2697039/python-equivalent-of-setinterval/14035296
     # use: setInterval(callback, ms, timeout)
-    def __init__(self, callback, interval, timeout=float("inf")):
+    # random FPS value if FPS is a List[2]
+
+    def __init__(self, callback, interval, timeout=float("inf"), randomMs=0):
         self.interval = interval / 1000.0
         self.timeout = timeout/1000.0
         self.FPS = 1.0 / self.interval
+        # Limit -interval <= randomMs <= interval
+        if randomMs >= 0:
+            self.randomMs = min(randomMs, interval)/1000.0
+        else:
+            self.randomMs = max(randomMs, interval)/1000.0
         self.callback = callback
         self.stopEvent = threading.Event()
         self.clock = pygameClock()
@@ -22,30 +30,17 @@ class setInterval:
         thread.start()
 
     def __setInterval(self):
+        # calculate the run time by self.timeout
         loopTime = self.timeout/self.interval
         if loopTime != float("inf"):
             loopTime = int(loopTime)
         else:
             loopTime = 10**100
         for _ in range(loopTime):
-            self.clock.tick(self.FPS)
+            # Make interval more random.
+            if self.randomMs()==0:
+                randomSleepTime=0
+            else:
+                randomSleepTime = uniform(0, 1000.0/self.randomMs)
+            self.clock.tick(self.FPS-randomSleepTime)
             self.callback()
-
-def Sleepp(duration):  # High accurate sleep
-    now = time.perf_counter()
-    end = now + duration
-    while now < end:
-        if end-now >= 1/61:
-            time.sleep(1/1000)
-        now = time.perf_counter()
-
-if __name__ == "__main__":
-    last=0
-    conut=0
-    def main():
-        global conut, last
-        conut += 1
-        print(conut, time.perf_counter()-last)
-        last=time.perf_counter()
-        
-    setInterval(main, 1, 1000)

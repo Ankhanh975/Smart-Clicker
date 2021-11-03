@@ -47,9 +47,17 @@ def getKeyboardState():
     return Pressed
 
 
-def IsPressed(checkState, KeyboardState):
-    # keyState: product of getKeyboardState()
+def getMouseState():
+    Pressed = map(getKeyState, (1, 2, 4))
+    Pressed = filter(None, Pressed)
+    Pressed = tuple(Pressed)
+    return Pressed
 
+
+def isPressed(checkState, KeyboardState=None):
+    # keyState: product of getKeyboardState()
+    if KeyboardState == None:
+        KeyboardState = getKeyboardState()
     if (len(checkState) != len(KeyboardState)):
         return False
     elif set(checkState) == set(KeyboardState):

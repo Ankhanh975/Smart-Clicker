@@ -145,15 +145,15 @@ def WhatToChat(LogReader, KeyPressed: int, mode=["Bedwars", "Skyblock"][0]):
                 return ["up GIAP pls", "up GIAP nha", "up GIAP nhe", "up GIAP di", "up GIAP pls", "up GIAP"]
     elif KeyPressed == 3:
         if LogReader.ACTIVE_IT_TRAP == None:
-            return ["ai bed?", "ai bed?", "ai bed day", "bed di nhe", "bed nha"]
+            return ["ai bed?", "ai bed?", "ai bed?", "ai bed day", "bed di nhe", "bed nha"]
         else:
             return ["bed lai di", "bed 1 lop nua vcl", "bed 1 lop nua di"]
     elif KeyPressed == 1:
         return ["@hmm", "@toan pro ", "@c", "@cc?", "@?", "@v", "@:<", "@ghe vay"]
     elif KeyPressed == 4:
-        return ["no qua!", "ve.", "ve", "bed", "no qua", "no", "e", "thu"]
+        return ["no qua!", "ve.", "ve" "no qua", "no", "e no qua"]
     elif KeyPressed == 5:
-        return ["@gg", "@gg", "@gg", "@GOOD GAME", "@good", "@non", "@gg'", "@sorry"]
+        return ["@gg", "@gg", "@gg", "@GOOD GAME", "@good", "@gg'", "@sorry", "@v"]
     elif KeyPressed == 6:
         return ["/leave"]
     elif KeyPressed == 7:
@@ -256,7 +256,7 @@ HighPerformanceStuff = HighPerformStuff()
 LowPerformanceStuff = LowPerformStuff()
 Thread1 = ClickerThread("LeftClick", [14.5, 17.5], [
     "shift", "x"], "mbutton", "lbutton")
-Thread2 = ClickerThread("RightClick", [11, 13], [
+Thread2 = ClickerThread("RightClick", [13, 15], [
     "shift", "x"], "c", "rbutton")
 Thread2.Switch.playsuond = False
 

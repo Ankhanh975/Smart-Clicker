@@ -42,8 +42,8 @@ class onChatMessage():
 
 
 def isFocused():
-    if "Minecraft 1.8.9" in winAPIIn.getActiveWindowName():
-        # if "V9" in winAPIIn.getActiveWindowName():
+    # if "Minecraft 1.8.9" in winAPIIn.getActiveWindowName():
+    if "V9" in winAPIIn.getActiveWindowName():
         return True
     else:
         return False

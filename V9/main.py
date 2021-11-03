@@ -10,27 +10,31 @@ import win32gui
 from time import perf_counter, sleep
 from os import system as OsCmd
 
+lastLeftClick = perf_counter()
+lastRightClick = perf_counter()
+
 
 def LeftClick():
+    global lastLeftClick
     # print("LeftClick")
 
     if not minecraftAPI.isFocused():
         return
     elif "mbutton" not in winAPIIn.getMouseState():
         return
-    print("==")
+    lastLeftClick = perf_counter()
     winAPIOut.fastclick()
 
 
 def RightClick():
+    global lastRightClick
     # print("RightClick")
     if not minecraftAPI.isFocused():
         return
     elif winAPIIn.getKeyState(0x43) == None:
         # If "c" is not pressed
         return
-    print("++")
-
+    lastRightClick = perf_counter()
     winAPIOut.fastclick(button="rbutton")
 
 
@@ -81,9 +85,11 @@ def init():
     resizeConsole()
 
 
+ConsoleScreen = ""
+
+
 def more():
-    print("more...")
-    
+    global ConsoleScreen
     # run 30 time a second
     if winAPIIn.getKeyState(0x73) != None:
         # Pressed F4
@@ -95,10 +101,31 @@ def more():
         id5.stop()
         return
     else:
-        print("more...")
-        OsCmd("cls")
-        print(id1.FPS, id2.FPS)
-        
+        line1 = minecraftAPI.isFocused()
+        if line1 == True:
+            if perf_counter()-lastLeftClick < 0.1:
+                line2 = f" |LClick| {id1.FPS} CPS| \n"
+            else:
+                line2 = f" |LClick| NA| \n"
+
+            if perf_counter()-lastRightClick < 0.1:
+                line3 = f" |LClick| {id2.FPS} CPS| \n"
+            else:
+                line3 = f" |LClick| NA| \n"
+        else:
+            line2 = line3 = ""
+        line1 = f" |Focus | {line1}| \n"
+
+        newFrame = "\n"
+        newFrame += line1
+        newFrame += line2
+        newFrame += line3
+
+        if newFrame != ConsoleScreen:
+            ConsoleScreen = newFrame
+            OsCmd("cls")
+            print(newFrame)
+
     if not minecraftAPI.isFocused():
         return
     elif winAPIIn.getKeyState(0x4C) and winAPIIn.getKeyState(0xA2):
@@ -109,10 +136,14 @@ def more():
         winAPIOut.fastclick("lbutton")
         sleep(1/60)
     else:
+        from response import WhatToChat
+        from random import choice
         numpad = [0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69]
         for keyCode in numpad:
             if winAPIIn.getKeyState(keyCode):
-                minecraftAPI.chat(":)")
+                print("Got key: " + keyCode)
+                whatToChat = WhatToChat(keyCode-0x60)
+                minecraftAPI.chat(choice(whatToChat))
                 # release key pressed
                 keybd_event(keyCode, 0, win32con.KEYEVENTF_KEYUP, 0)
                 sleep(1/30)
@@ -123,12 +154,12 @@ log = []
 
 
 def onChatMessage(text):
-    print(text)
+    log.append(text)
 
 
 init()
-id1 = setInterval(LeftClick, 1000/17.5, randomMs=1000/14.5-1000/17.5)
-id2 = setInterval(RightClick, 1000/15, randomMs=1000/15-1000/13)
+id1 = setInterval(LeftClick, 1000.0/17.5, randomMs=1000/14.5-1000/17.5)
+id2 = setInterval(RightClick, 1000.0/15, randomMs=1000/13-1000/15)
 id3 = setInterval(zoom, 16.6)
 id4 = setInterval(more, 33.3)
 id5 = minecraftAPI.onChatMessage(onChatMessage)

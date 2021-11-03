@@ -40,10 +40,11 @@ class setInterval:
             loopTime = 10**100
         for _ in range(loopTime):
             self.FPS = self.clock.get_fps()
+            self.FPS = round(self.FPS)
             # Make interval more random.
         
             randomSleepTime = uniform(0, self.randomMs)
-            self.clock.tick(1.0/(self.interval-randomSleepTime))
+            self.clock.tick(1.0/(self.interval+randomSleepTime))
             self.callback()
             # print("Interval", randomSleepTime, 1.0 /
             #       (self.interval+randomSleepTime))

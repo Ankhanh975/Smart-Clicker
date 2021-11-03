@@ -40,4 +40,12 @@ def Sleepp(duration):  # High accurate sleep
         now = time.perf_counter()
 
 if __name__ == "__main__":
-    pass
+    last=0
+    conut=0
+    def main():
+        global conut, last
+        conut += 1
+        print(conut, time.perf_counter()-last)
+        last=time.perf_counter()
+        
+    setInterval(main, 1, 1000)

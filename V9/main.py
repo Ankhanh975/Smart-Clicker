@@ -20,7 +20,7 @@ def LeftClick():
     if not minecraftAPI.isFocused():
         return
         
-    while winAPIIn.getKeyState(2) == None:
+    while winAPIIn.getKeyState(0x04) == None:
         # If "mbutton" is NOT pressed
         sleep(1/120)
 
@@ -170,7 +170,7 @@ def more():
         return
     elif winAPIIn.getKeyState(0x4C) and winAPIIn.getKeyState(0xA2):
 
-        # Login to server 3fmc.com
+        print("Login to server 3fmc.com")
         minecraftAPI.chat("/l ak2006@@", RePress=False)
 
     else:

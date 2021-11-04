@@ -1,8 +1,7 @@
 import winAPIOut
 import minecraftAPI
 from time import perf_counter, sleep
-from random import choice, shuffle
-
+from random import shuffle
 
 def __WhatToChat(numpad):
     global mode, Up_KIEM, Up_GIAP, IT_TRAP, LAY_KC
@@ -14,9 +13,9 @@ def __WhatToChat(numpad):
     elif numpad == 2:
         if LAY_KC==False:
             LAY_KC = True
-            return ["ra KC di", "lay kc nhe", "ra KC nhe"]
+            return ["ra KC di", "lay kc nha", "ra KC nhe"]
         elif Up_KIEM == False:
-            return ["up KIEM pls", "up KIEM nha", "up KIEM nhe", "up KIEM pls", "up KIEM:"]+["e ra KC", "lay kc", "ra KC"]
+            return ["up KIEM pls", "up KIEM nha", "up KIEM nhe", "up KIEM pls", "up KIEM:"]
         else:
             if Up_GIAP == 3:
                 return ["up GIAP IV nua"]
@@ -70,7 +69,9 @@ def onChatMessage(text):
     global mode, Up_KIEM, Up_GIAP, IT_TRAP, LAY_KC
     log.append(text)
     if "? ??ng nh?p thành công!" in text:
-        sleep(1/60)
+        if not minecraftAPI.isFocused():
+            return
+        
         winAPIOut.fastclick("rbutton")
         sleep(1/60)
 
@@ -87,7 +88,8 @@ def onChatMessage(text):
     elif "Discord https://discord.gg/Zehw9wP" in text and len(log) > 5:
         if "Facebook" in log[-2]:
             if "MAKE 3F GREAT AGAIN" in log[-3]:
-                sleep(1/60)
+                if not minecraftAPI.isFocused():
+                    return
                 winAPIOut.fastclick("rbutton")
                 sleep(1/60)
 

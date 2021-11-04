@@ -9,10 +9,11 @@ import win32con
 import win32gui
 from time import perf_counter, sleep
 from os import system as OsCmd
-from response import onChatMessage
+from chat import onChatMessage
 
 lastLeftClick = perf_counter()
 lastRightClick = perf_counter()
+
 
 def LeftClick():
     global lastLeftClick
@@ -77,31 +78,27 @@ def console():
 
 
 def init():
-    try:
-        from sys import exit as ThreadExit
+    from sys import exit as ThreadExit
 
-        def resizeConsole(winSize=(500, 300)):
-            hwnd = win32gui.FindWindow(None, "Auto Clicker")
-            x0, y0, x1, y1 = win32gui.GetWindowRect(hwnd)
-            win32gui.MoveWindow(hwnd, x0, y0,
-                                winSize[0], winSize[1], True)
-        resizeConsole()
-        if "Auto Clicker" in winAPIIn.getWindowNames():
-            # anthor instance is running
-            O_Sound.ErrorSound.play()
-            OsCmd("color c7")
-            OsCmd("mode con cols=30 lines=6")
+    def resizeConsole(winSize=(500, 300)):
+        hwnd = win32gui.FindWindow(None, "Auto Clicker")
+        x0, y0, x1, y1 = win32gui.GetWindowRect(hwnd)
+        win32gui.MoveWindow(hwnd, x0, y0,
+                            winSize[0], winSize[1], True)
+    
+    if "Auto Clicker" in winAPIIn.getWindowNames():
+        # anthor instance is running
+        O_Sound.ErrorSound.play()
+        OsCmd("color c7")
+        OsCmd("mode con cols=30 lines=6")
 
-            print("Already open this program.")
-            sleep(4)
-            ThreadExit()  # Stop everything because no thread started yet
+        print("Already open this program.")
+        sleep(4)
+        ThreadExit()  # Stop everything because no thread started yet
 
-        OsCmd("title "+"Auto Clicker")
-        OsCmd("color 2d")
-
-    except Exception as p:
-        pass
-
+    OsCmd("title "+"Auto Clicker")
+    OsCmd("color 2d")
+    resizeConsole()
 
 ConsoleScreen = ""
 
@@ -153,7 +150,7 @@ def more():
         minecraftAPI.chat("/l ak2006@@", RePress=False)
 
     else:
-        from response import WhatToChat
+        from chat import WhatToChat
 
         numpad = [0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69]
         for keyCode in numpad:

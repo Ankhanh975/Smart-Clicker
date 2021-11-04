@@ -18,9 +18,9 @@ def __WhatToChat(numpad):
         elif Up_KIEM == False:
             return ["up KIEM pls", "up KIEM nha", "up KIEM nhe", "up KIEM di", "up KIEM pls", "up KIEM"]
         else:
-            if LogReader.Up_GIAP == 3:
+            if Up_GIAP == 3:
                 return ["up GIAP IV nua"]
-            elif LogReader.Up_GIAP == 2:
+            elif Up_GIAP == 2:
                 return ["up GIAP III nua pls", "ai lay kc up GIAP III ho"]
             else:
                 return ["up GIAP pls", "up GIAP nha", "up GIAP nhe", "up GIAP di", "up GIAP pls", "up GIAP"]
@@ -70,7 +70,7 @@ def onChatMessage(text):
     global mode, Up_KIEM, Up_GIAP, IT_TRAP, LAY_KC
     log.append(text)
     if "? ??ng nh?p thành công!" in text:
-        sleep(1/15)
+        sleep(1/60)
         winAPIOut.fastclick("rbutton")
         sleep(1/60)
 

@@ -87,17 +87,17 @@ class Sound:
         pygameInit(44100, -16, 2, 64)
         # TODO: loop sound with getter in aready suond lib
         self.PressSound = pygameSound("Resources/Press2.mp3")
-        self.PressSound.set_volume(0.2)
+        self.PressSound.set_volume(0.3)
         self.PressSound.fadeout(50)
         self.ClickSound = pygameSound("Resources/Press2.mp3")
-        self.ClickSound.set_volume(0.2)
+        self.ClickSound.set_volume(0.3)
         self.ClickSound.fadeout(50)
         self.ExitSound = pygameSound("Resources/Press1.mp3")
         self.ErrorSound = pygameSound("Resources/Error_Sound.mp3")
-        self.ErrorSound.set_volume(0.2)
+        self.ErrorSound.set_volume(0.3)
         self.ErrorSound.fadeout(50)
         self.StartSound = pygameSound("Resources/On.mp3")
-        self.StartSound.set_volume(0.2)
+        self.StartSound.set_volume(0.3)
         self.StartSound.fadeout(50)
 
 

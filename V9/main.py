@@ -14,7 +14,6 @@ from response import onChatMessage
 lastLeftClick = perf_counter()
 lastRightClick = perf_counter()
 
-
 def LeftClick():
     global lastLeftClick
     # print("LeftClick")
@@ -71,36 +70,37 @@ def console():
         a = a.lstrip().rstrip()
         if a != "":
             try:
-                x=eval(a)
+                x = eval(a)
                 print(x)
             except Exception as p:
                 print(p)
 
 
 def init():
-    from sys import exit as ThreadExit
+    try:
+        from sys import exit as ThreadExit
 
-    if "Auto Clicker" in winAPIIn.getWindowNames():
-        # anthor instance is running
-        O_Sound.ErrorSound.play()
-        OsCmd("color c7")
-        OsCmd("mode con cols=30 lines=6")
+        def resizeConsole(winSize=(500, 300)):
+            hwnd = win32gui.FindWindow(None, "Auto Clicker")
+            x0, y0, x1, y1 = win32gui.GetWindowRect(hwnd)
+            win32gui.MoveWindow(hwnd, x0, y0,
+                                winSize[0], winSize[1], True)
+        resizeConsole()
+        if "Auto Clicker" in winAPIIn.getWindowNames():
+            # anthor instance is running
+            O_Sound.ErrorSound.play()
+            OsCmd("color c7")
+            OsCmd("mode con cols=30 lines=6")
+
+            print("Already open this program.")
+            sleep(4)
+            ThreadExit()  # Stop everything because no thread started yet
+
         OsCmd("title "+"Auto Clicker")
+        OsCmd("color 2d")
 
-        print("Already open this program.")
-        sleep(4)
-        ThreadExit()  # Stop everything because no thread started yet
-
-    def resizeConsole(winSize=(500, 300)):
-
-        hwnd = win32gui.FindWindow(None, "Auto Clicker")
-        x0, y0, x1, y1 = win32gui.GetWindowRect(hwnd)
-        win32gui.MoveWindow(hwnd, x0, y0,
-                            winSize[0], winSize[1], True)
-
-    OsCmd("title "+"Auto Clicker")
-    OsCmd("color 2d")
-    resizeConsole()
+    except Exception as p:
+        pass
 
 
 ConsoleScreen = ""
@@ -111,6 +111,7 @@ def more():
     # run 30 time a second
     if winAPIIn.getKeyState(0x73) != None:
         # Pressed F4
+
         print("Press F4 to continue...")
         O_Sound.ExitSound.play()
         for id in (id1, id2, id3, id4, id5):
@@ -141,7 +142,7 @@ def more():
 
         if newFrame != ConsoleScreen:
             ConsoleScreen = newFrame
-            OsCmd("cls")
+            # OsCmd("cls")
             print(newFrame, end="")
 
     if not minecraftAPI.isFocused():
@@ -157,9 +158,10 @@ def more():
         numpad = [0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69]
         for keyCode in numpad:
             if winAPIIn.getKeyState(keyCode):
-                print("Got key: " + keyCode)
+                print("Got key: ", keyCode)
                 whatToChat = WhatToChat(keyCode-0x60)
-                minecraftAPI.chat(whatToChat, RePress=False)
+                print("whatToChat", whatToChat)
+                minecraftAPI.chat(whatToChat)
                 # release key pressed
                 keybd_event(keyCode, 0, win32con.KEYEVENTF_KEYUP, 0)
                 sleep(1/30)

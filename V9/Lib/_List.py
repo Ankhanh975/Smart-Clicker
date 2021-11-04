@@ -404,3 +404,5 @@ VK_CODE = {"lbutton": 0x01,
            ']':0xDD,
            "'":0xDE,
            '`':0xC0}
+
+# https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes

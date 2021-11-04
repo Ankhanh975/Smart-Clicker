@@ -166,8 +166,8 @@ def more():
 
 
 init()
-id1 = setInterval(LeftClick, 1000.0/17.5, randomMs=1000/14.5-1000/17.5)
-id2 = setInterval(RightClick, 1000.0/15, randomMs=1000/13-1000/15)
+id1 = setInterval(LeftClick, 1000.0/18.5, randomMs=1000/14.5-1000/17.5)
+id2 = setInterval(RightClick, 1000.0/16, randomMs=1000/13-1000/15)
 id3 = setInterval(zoom, 16.6)
 id4 = setInterval(more, 33.3)
 id5 = minecraftAPI.onChatMessage(onChatMessage)

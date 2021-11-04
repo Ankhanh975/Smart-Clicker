@@ -16,7 +16,7 @@ def __WhatToChat(numpad):
             LAY_KC = True
             return ["ra KC di", "lay kc nhe", "ra KC nhe"]
         elif Up_KIEM == False:
-            return ["up KIEM pls", "up KIEM nha", "up KIEM nhe", "up KIEM di", "up KIEM pls", "up KIEM"]
+            return ["up KIEM pls", "up KIEM nha", "up KIEM nhe", "up KIEM pls", "up KIEM:"]+["e ra KC", "lay kc", "ra KC"]
         else:
             if Up_GIAP == 3:
                 return ["up GIAP IV nua"]

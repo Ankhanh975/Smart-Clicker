@@ -87,7 +87,7 @@ def onChatMessage(text):
     elif "Discord https://discord.gg/Zehw9wP" in text and len(log) > 5:
         if "Facebook" in log[-2]:
             if "MAKE 3F GREAT AGAIN" in log[-3]:
-                sleep(1/15)
+                sleep(1/60)
                 winAPIOut.fastclick("rbutton")
                 sleep(1/60)
 

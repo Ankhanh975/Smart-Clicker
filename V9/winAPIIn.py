@@ -3,7 +3,7 @@ from _main import *
 import win32gui
 import win32api
 from Lib import _List
-
+from functools import lru_cache
 
 def getPos():
     return win32gui.GetCursorInfo()[2]
@@ -21,6 +21,14 @@ def getWindowNames():
     win32gui.EnumWindows(winEnumHandler, None)
     return All
 
+@lru_cache(maxsize=None)
+def __getWindowName(windowId):
+    # cache because windowId is a constant in a window lifetime
+    # so GetWindowText(windowId) is a constant for every windowId
+    return GetWindowText(windowId)
+    
+def getActiveWindowName():
+    return __getWindowName(GetForegroundWindow())
 
 def getActiveWindowName():
     return GetWindowText(GetForegroundWindow())

@@ -2,23 +2,28 @@ import win32api
 from Lib import _List
 from win32api import keybd_event
 import win32con
-import ctypes
-import time
+from ctypes import WinDLL
+from time import perf_counter, sleep
 
-# pygame.time.delay()
+from pygame.time import wait as pygameWait
 
 
 def Sleepp(duration):  # High accurate sleep
-    now = time.perf_counter()
+    now = perf_counter()
     end = now + duration
     while now < end:
         if end-now >= 1/61:
-            time.sleep(1/1000)
-        now = time.perf_counter()
+            sleep(end-now-1/62)
+        elif end-now >= 2 / 1000.0:
+            # +- 0.4/1000 is error range of pygameWait
+            sleepInSeconds = (end-now) - 0.4/1000
+            pygameWait(int(sleepInSeconds*1000))
+        now = perf_counter()
 
 
 def turn_capslock(state: bool = False):
-    dll = ctypes.WinDLL('User32.dll')
+    # Take capslock_state to state
+    dll = WinDLL('User32.dll')
     VK_CAPITAL = 0X14
     if dll.GetKeyState(VK_CAPITAL):
         dll.keybd_event(VK_CAPITAL, 0X3a, 0X1, 0)
@@ -41,7 +46,7 @@ def pressAndHold(*args):
     '''
     for i in args:
         keybd_event(_List.VK_CODE[i], 0, 0, 0)
-        time.sleep(.05)
+        sleep(.05)
 
 
 def release(*args):
@@ -61,7 +66,7 @@ def pressHoldRelease(*args):
 
 
 def typer(string=None, *args):
-    # time.sleep(4)
+    # sleep(4)
     turn_capslock()
     for i in string:
         if i == ' ':
@@ -491,15 +496,6 @@ def typer(string=None, *args):
                 _List.VK_CODE[i], 0, win32con.KEYEVENTF_KEYUP, 0)
 
 
-if __name__ == '__main__':
-    time.sleep(4)
-    press("/")
-    Sleepp(1/20)
-    press("backspace")
-    typer("Hello World")
-    press("enter")
-
-
 def fastclick(button="lbutton", duration=0.005):
     # Click
     if button.lower() == "lbutton":
@@ -511,3 +507,12 @@ def fastclick(button="lbutton", duration=0.005):
     win32api.mouse_event(_ButtonDown, 0, 0)
     Sleepp(duration)
     win32api.mouse_event(_ButtonUp, 0, 0)
+
+
+if __name__ == '__main__':
+    sleep(4)
+    # press("/")
+    # Sleepp(1/20)
+    # press("backspace")
+    # typer("Hello World")
+    # press("enter")

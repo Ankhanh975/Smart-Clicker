@@ -1,13 +1,11 @@
 # Interact with Minecraft 1.8.9
-import numpy as np
 import winAPIOut
 import winAPIIn
 from win32api import keybd_event
-from time import perf_counter, sleep
+from time import sleep
 from Lib import _List
 import win32con
 from threading import Thread
-
 
 class onChatMessage():
     file = "C:/Users/Admin/AppData/Roaming/.minecraft/logs/latest.log"
@@ -40,7 +38,6 @@ class onChatMessage():
 
     def stop(self):
         self.running = False
-
 
 def isFocused():
     if "Minecraft 1.8.9" in winAPIIn.getActiveWindowName():
@@ -99,6 +96,11 @@ def chat(text=".", RePress=True):
 
 
 def takeScreenShot(self):
-    # Need Bandicam to take a screenshot in full screen mode
-    #
-    return np.array(1920, 1080)
+    # Need Bandicam to take a screenshot if Minecraft in full screen mode
+    import numpy as np
+    import cv2
+    import matplotlib.pyplot as plt
+
+    # reads image 'opencv-logo.png' as grayscale
+    img = cv2.imread('/path_to_image/opencv-logo.png', 0) 
+    plt.imshow(img, cmap='gray')

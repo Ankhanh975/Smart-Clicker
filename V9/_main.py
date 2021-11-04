@@ -10,7 +10,7 @@ from pygame.time import Clock as pygameClock
 
 
 def setTimeout(callback, ms):
-    x = threading .Timer(ms/1000.0, callback)
+    x = threading .Timer(ms /1000.0, callback)
     x.start()
 
 
@@ -21,7 +21,7 @@ class setInterval:
     running = True
     FPS = 0
 
-    def __init__(self, callback, interval, timeout=float("inf"), randomMs=0):
+    def __init__(self, callback, interval, timeout=float("inf"), randomMs=0, daemon=True):
         self.interval = interval / 1000.0
         self.timeout = timeout/1000.0
         1.0 / self.interval
@@ -33,8 +33,7 @@ class setInterval:
         self.callback = callback
         self.stopEvent = threading.Event()
         self.clock = pygameClock()
-        thread = threading.Thread(target=self.__setInterval)
-        thread.start()
+        threading.Thread(target=self.__setInterval, daemon=daemon).start()
 
     def __setInterval(self):
         # calculate the run time by self.timeout

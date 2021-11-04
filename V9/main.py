@@ -4,9 +4,7 @@ import winAPIIn
 from _main import *
 from win32api import keybd_event
 from threading import Thread
-from Lib import _List
 import win32con
-import win32gui
 from time import perf_counter, sleep
 from os import system as OsCmd
 from chat import onChatMessage
@@ -21,8 +19,11 @@ def LeftClick():
 
     if not minecraftAPI.isFocused():
         return
-    elif "mbutton" not in winAPIIn.getMouseState():
-        return
+        
+    while winAPIIn.getKeyState(2) == None:
+        # If "mbutton" is NOT pressed
+        sleep(1/120)
+
     lastLeftClick = perf_counter()
     winAPIOut.fastclick()
 
@@ -32,11 +33,33 @@ def RightClick():
     # print("RightClick")
     if not minecraftAPI.isFocused():
         return
-    elif winAPIIn.getKeyState(0x43) == None:
+    while winAPIIn.getKeyState(0x43) == None:
         # If "c" is not pressed
-        return
+        sleep(1/120)
     lastRightClick = perf_counter()
     winAPIOut.fastclick(button="rbutton")
+# def LeftClick():
+#     global lastLeftClick
+#     # print("LeftClick")
+
+#     if not minecraftAPI.isFocused():
+#         return
+#     elif "mbutton" not in winAPIIn.getMouseState():
+#         return
+#     lastLeftClick = perf_counter()
+#     winAPIOut.fastclick()
+
+
+# def RightClick():
+#     global lastRightClick
+#     # print("RightClick")
+#     if not minecraftAPI.isFocused():
+#         return
+#     elif winAPIIn.getKeyState(0x43) == None:
+#         # If "c" is not pressed
+#         return
+#     lastRightClick = perf_counter()
+#     winAPIOut.fastclick(button="rbutton")
 
 
 inzoom = False
@@ -79,13 +102,13 @@ def console():
 
 def init():
     from sys import exit as ThreadExit
+    from win32gui import FindWindow, GetWindowRect, MoveWindow
 
     def resizeConsole(winSize=(500, 300)):
-        hwnd = win32gui.FindWindow(None, "Auto Clicker")
-        x0, y0, x1, y1 = win32gui.GetWindowRect(hwnd)
-        win32gui.MoveWindow(hwnd, x0, y0,
-                            winSize[0], winSize[1], True)
-    
+        hwnd = FindWindow(None, "Auto Clicker")
+        x0, y0, x1, y1 = GetWindowRect(hwnd)
+        MoveWindow(hwnd, x0, y0, winSize[0], winSize[1], True)
+
     if "Auto Clicker" in winAPIIn.getWindowNames():
         # anthor instance is running
         O_Sound.ErrorSound.play()
@@ -100,6 +123,7 @@ def init():
     OsCmd("color 2d")
     resizeConsole()
 
+
 ConsoleScreen = ""
 
 
@@ -108,12 +132,12 @@ def more():
     # run 30 time a second
     if winAPIIn.getKeyState(0x73) != None:
         # Pressed F4
+        O_Sound.ExitSound.play()
 
         print("Press F4 to continue...")
-        O_Sound.ExitSound.play()
         for id in (id1, id2, id3, id4, id5):
             id.stop()
-
+        # sleep(7/60)
         return
     else:
         line1 = minecraftAPI.isFocused()
@@ -165,10 +189,10 @@ def more():
                 keybd_event(keyCode, 0, win32con.KEYEVENTF_KEYUP, 0)
 
 
-init()
 id1 = setInterval(LeftClick, 1000.0/18.5, randomMs=1000/14.5-1000/17.5)
 id2 = setInterval(RightClick, 1000.0/16, randomMs=1000/13-1000/15)
 id3 = setInterval(zoom, 16.6)
-id4 = setInterval(more, 33.3)
+id4 = setInterval(more, 33.3, daemon=False)
 id5 = minecraftAPI.onChatMessage(onChatMessage)
 Thread(target=console, daemon=True).start()
+init()

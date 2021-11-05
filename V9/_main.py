@@ -2,7 +2,6 @@ from pygame.mixer import Sound as pygameSound
 from pygame.mixer import init as pygameInit
 
 
-
 import threading
 # from threading import Timer, Event, Thread
 from random import uniform
@@ -10,7 +9,7 @@ from pygame.time import Clock as pygameClock
 
 
 def setTimeout(callback, ms):
-    x = threading .Timer(ms /1000.0, callback)
+    x = threading .Timer(ms / 1000.0, callback)
     x.start()
 
 
@@ -21,10 +20,8 @@ class setInterval:
     running = True
     FPS = 0
 
-    def __init__(self, callback, interval, timeout=float("inf"), randomMs=0, daemon=True):
+    def __init__(self, callback, interval, randomMs=0, daemon=True):
         self.interval = interval / 1000.0
-        self.timeout = timeout/1000.0
-        1.0 / self.interval
         # Limit -interval <= randomMs <= interval
         if randomMs >= 0:
             self.randomMs = min(randomMs, interval)/1000.0
@@ -36,13 +33,7 @@ class setInterval:
         threading.Thread(target=self.__setInterval, daemon=daemon).start()
 
     def __setInterval(self):
-        # calculate the run time by self.timeout
-        loopTime = self.timeout/self.interval
-        if loopTime != float("inf"):
-            loopTime = int(loopTime)
-        else:
-            loopTime = 10**100
-        for _ in range(loopTime):
+        while self.running == True:
             self.FPS = self.clock.get_fps()
             self.FPS = round(self.FPS)
             # Make interval more random.
@@ -52,8 +43,6 @@ class setInterval:
             self.callback()
             # print("Interval", randomSleepTime, 1.0 /
             #       (self.interval+randomSleepTime))
-            if self.running == False:
-                return
 
     def stop(self):
         self.running = False

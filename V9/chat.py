@@ -65,7 +65,7 @@ LAY_KC = False
 
 def onChatMessage(text):
 
-    print("text", text)
+    print(text)
     global mode, Up_KIEM, Up_GIAP, IT_TRAP, LAY_KC
     log.append(text)
     if "? ??ng nh?p thành công!" in text:

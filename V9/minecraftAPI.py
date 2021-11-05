@@ -35,6 +35,7 @@ class onChatMessage():
                 self.line = self.f.readline()
         except Exception as p:
             print("pp ", p)
+
     def stop(self):
         self.f.close()
         self.id.stop()
@@ -96,12 +97,31 @@ def chat(text=".", RePress=True):
                 print(p)
 
 
-def takeScreenShot(self):
-    # Need Bandicam to take a screenshot if Minecraft in full screen mode
+def takeScreenShot():
+    Z = [(4, 4), (4, 76), (4, 148), (4, 220), (4, 292),
+         (4, 364), (4, 436), (4, 508), (4, 580), (76, 4),
+         (76, 76), (76, 148), (76, 220), (76, 292), (76, 364),
+         (76, 436), (76, 508), (76, 580), (148, 4), (148, 76),
+         (148, 148), (148, 220), (148, 292), (148, 364), (148, 436),
+         (148, 508), (148, 580), (236, 4), (236, 76), (236, 148),
+         (236, 220), (236, 292), (236, 364), (236, 436), (236, 508),
+         (236, 580)]
+    # Need Bandicam to take a screenshot when Minecraft in full screen mode
+    from tensorflow.keras.models import load_model
+    model = load_model("item_reader_seq.model")
     import numpy as np
     import cv2
-    import matplotlib.pyplot as plt
+    import os
+    img = cv2.imread("D:/Bi/Record/javaw 2021-11-05 21-41-48-099.jpg")
+    img = img[540:845, 636:1285]
+    # img = img[480:845, 600:1285]
 
-    # reads image 'opencv-logo.png' as grayscale
-    img = cv2.imread('/path_to_image/opencv-logo.png', 0)
-    plt.imshow(img, cmap='gray')
+    Slot = []
+    for x, y in Z:
+        Slot.append(img[x:x+64, y:y+32])
+        # Slot.append(img)
+
+    for n in range(36):
+        Slot[n] = cv2.resize(Slot[n], (32//4, 64//4), interpolation=cv2.INTER_AREA)
+    
+    model.predict(X)

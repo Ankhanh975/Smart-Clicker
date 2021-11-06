@@ -1,3 +1,5 @@
+# cd C:\src\Python\Smart Clicker\V9 && py "C:\src\Python\Smart Clicker\V9\main.py"
+
 import minecraftAPI
 import winAPIOut
 import winAPIIn
@@ -200,3 +202,8 @@ id4 = setInterval(more, 33.3, daemon=False)
 id5 = minecraftAPI.onChatMessage(onChatMessage)
 Thread(target=console, daemon=True).start()
 init()
+    
+def AI():
+    import item
+    
+Thread(target=AI, daemon=True).start()

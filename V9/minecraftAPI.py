@@ -95,27 +95,3 @@ def chat(text=".", RePress=True):
                 keybd_event(_List.VK_CODE[i], 0, 0, 0)
             except KeyError as p:
                 print(p)
-
-from AI import predict
-import cv2
-import os
-def getInventoryPos():
-    print("start")
-    
-    before = os.listdir("D:/Bi/Record/")
-    beforeLength = len(before)
-    for i in range(500):
-        sleep(1/200)
-        now = os.listdir("D:/Bi/Record/")
-        if len(now) != beforeLength:
-            newFile = list(set(now) - set(before))[0]
-            print(i, newFile)
-            newFilePath = os.path.join("D:/Bi/Record/", newFile)
-            img = cv2.imread(newFilePath)
-            x = predict.model(img)
-            print(newFile, x)
-            return
-    print("done")
-    return
-
-# cd C:\src\Python\Smart Clicker\V9 && py "C:\src\Python\Smart Clicker\V9\main.py"

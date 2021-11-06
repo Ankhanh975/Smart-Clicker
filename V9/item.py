@@ -55,7 +55,7 @@ def more():
         keybd_event(0x71, 0, win32con.KEYEVENTF_KEYUP, 0)
         end = perf_counter()
         print(end-start)
-        # sleep(0.2)
+        sleep(0.2)
 
 
 id4 = setInterval(more, 33.3, blocking=True)

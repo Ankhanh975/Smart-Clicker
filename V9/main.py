@@ -174,8 +174,8 @@ def more():
         minecraftAPI.chat("/l ak2006@@", RePress=False)
     elif winAPIIn.getKeyState(0x71):
         # F2
-        sleep(1/10)
-        minecraftAPI.takeScreenShot()
+        # sleep(7/1000.0)
+        minecraftAPI.getInventoryPos()
         
     else:
         from chat import WhatToChat

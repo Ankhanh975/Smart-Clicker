@@ -20,7 +20,7 @@ class setInterval:
     running = True
     FPS = 0
 
-    def __init__(self, callback, interval, randomMs=0, daemon=True):
+    def __init__(self, callback, interval, randomMs=0, daemon=True, blocking=False, args=tuple(), kwargs={}):
         self.interval = interval / 1000.0
         # Limit -interval <= randomMs <= interval
         if randomMs >= 0:
@@ -28,9 +28,17 @@ class setInterval:
         else:
             self.randomMs = max(randomMs, interval)/1000.0
         self.callback = callback
+        self.args = args
+        self.kwargs = kwargs
+
         self.stopEvent = threading.Event()
         self.clock = pygameClock()
-        threading.Thread(target=self.__setInterval, daemon=daemon).start()
+        if blocking:
+            self.__setInterval()
+
+        else:
+            threading.Thread(target=self.__setInterval,
+                             daemon=daemon, kwargs=kwargs).start()
 
     def __setInterval(self):
         while self.running == True:
@@ -40,7 +48,7 @@ class setInterval:
 
             randomSleepTime = uniform(0, self.randomMs)
             self.clock.tick(1.0/(self.interval+randomSleepTime))
-            self.callback()
+            self.callback(*self.args, **self.kwargs)
             # print("Interval", randomSleepTime, 1.0 /
             #       (self.interval+randomSleepTime))
 

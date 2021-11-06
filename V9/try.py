@@ -1,3 +1,4 @@
+from win32api import keybd_event
 from AI import predict
 import cv2
 import os
@@ -32,7 +33,7 @@ def getInventoryPos():
             beforeLength = len(before)
             return x
     print("done")
-    return 
+    return
 
 
 def more():
@@ -41,6 +42,7 @@ def more():
         getInventoryPos()
         end = perf_counter()
         print(end-start)
+        keybd_event(0x5A, 0, win32con.KEYEVENTF_KEYUP, 0)
 
 
 id4 = setInterval(more, 33.3, daemon=False)

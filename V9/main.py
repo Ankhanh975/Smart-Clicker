@@ -24,10 +24,13 @@ def LeftClick():
 
     if not minecraftAPI.isFocused():
         return
-        
-    while winAPIIn.getKeyState(0x04) == None:
+    while True:
         # If "mbutton" is NOT pressed
+
         sleep(1/120)
+        if winAPIIn.getKeyState(0x04):
+            if minecraftAPI.isFocused():
+                break
 
     lastLeftClick = perf_counter()
     winAPIOut.fastclick()
@@ -38,9 +41,12 @@ def RightClick():
     # print("RightClick")
     if not minecraftAPI.isFocused():
         return
-    while winAPIIn.getKeyState(0x43) == None:
+    while True:
         # If "c" is not pressed
         sleep(1/120)
+        if winAPIIn.getKeyState(0x43):
+            if minecraftAPI.isFocused():
+                break
     lastRightClick = perf_counter()
     winAPIOut.fastclick(button="rbutton")
 # def LeftClick():
@@ -181,7 +187,7 @@ def more():
         # sleep(7/1000.0)
         pass
         # minecraftAPI.getInventoryPos()
-        
+
     else:
         from chat import WhatToChat
 
@@ -196,6 +202,7 @@ def more():
                 keybd_event(keyCode, 0, win32con.KEYEVENTF_KEYUP, 0)
                 sleep(1/30)
                 keybd_event(keyCode, 0, win32con.KEYEVENTF_KEYUP, 0)
+                sleep(0.2)
 
 
 id1 = setInterval(LeftClick, 1000.0/18.5, randomMs=1000/14.5-1000/17.5)
@@ -205,9 +212,11 @@ id4 = setInterval(more, 33.3, daemon=False)
 id5 = minecraftAPI.onChatMessage(onChatMessage)
 # Thread(target=console, daemon=True).start()
 init()
-    
+
+
 def AI():
     import item
-    
+
+
 Thread(target=AI, daemon=True).start()
 O_Sound.StartSound.play()

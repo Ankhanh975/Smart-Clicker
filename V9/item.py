@@ -36,7 +36,7 @@ def getInventoryPos():
             if type(img) == type(None):
                 continue
             x = predict.model(img)
-            # print(x)
+            print(newFile, x )
 
             before = os.listdir("D:/Bi/Record/")
             # beforeLength = len(before)
@@ -52,10 +52,10 @@ def more():
         start = perf_counter()
         keybd_event(0x71, 0, win32con.KEYEVENTF_KEYUP, 0)
         getInventoryPos()
-        keybd_event(0x71, 0, win32con.KEYEVENTF_KEYUP, 0)
         end = perf_counter()
         print(end-start)
         sleep(0.2)
 
 
+O_Sound.ErrorSound.play()
 id4 = setInterval(more, 33.3, blocking=True)

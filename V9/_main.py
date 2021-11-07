@@ -98,4 +98,3 @@ class Sound:
 
 
 O_Sound = Sound()
-O_Sound.StartSound.play()

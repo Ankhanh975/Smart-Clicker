@@ -1,0 +1,376 @@
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 16 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 16 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 6 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 6 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+start
+1 javaw 2021-11-07 15-29-15-136.jpg
+2 javaw 2021-11-07 15-29-15-136.jpg
+3 javaw 2021-11-07 15-29-15-136.jpg
+4 javaw 2021-11-07 15-29-15-136.jpg
+5 javaw 2021-11-07 15-29-15-136.jpg
+6 javaw 2021-11-07 15-29-15-136.jpg
+7 javaw 2021-11-07 15-29-15-136.jpg
+D:/Bi/Record/javaw 2021-11-07 15-29-15-136.jpg [['33' '33' '33' '33' '33' '33' '33' '33' '33']
+ ['33' '33' '33' '33' '33' '33' '33' '33' '33']
+ ['33' '33' '33' '33' '33' '33' '33' '33' '33']
+ ['1' '27' '28' '27' '27' '27' '27' '27' '33']]
+0.6104105999999998
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+start
+3 javaw 2021-11-07 15-29-32-333.jpg
+4 javaw 2021-11-07 15-29-32-333.jpg
+5 javaw 2021-11-07 15-29-32-333.jpg
+6 javaw 2021-11-07 15-29-32-333.jpg
+7 javaw 2021-11-07 15-29-32-333.jpg
+8 javaw 2021-11-07 15-29-32-333.jpg
+9 javaw 2021-11-07 15-29-32-333.jpg
+D:/Bi/Record/javaw 2021-11-07 15-29-32-333.jpg [['33' '33' '33' '33' '33' '33' '33' '33' '33']
+ ['33' '33' '33' '33' '33' '33' '33' '33' '33']
+ ['33' '33' '33' '33' '33' '33' '33' '33' '33']
+ ['1' '27' '28' '27' '27' '27' '27' '27' '33']]
+0.08764979999999767
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 17 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 17 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 3 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 3 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 3 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 1 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 1 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 1 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+Got key:  98
+whatToChat ra KC nhe
+'numpad2'
+'numpad2'
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick| 13 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+Got key:  98
+whatToChat up KIEM nha
+'numpad2'
+'numpad2'
+
+ |Focus |  True  | 
+ |LClick| 0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+Got key:  99
+whatToChat ai bed?
+'numpad3'
+'numpad3'
+
+ |Focus |  True  | 
+ |LClick| 0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 1 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 17 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 17 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 8 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 17 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 16 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick| 17 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick| 13 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick| 13 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick| 0 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick| 9 CPS | 
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+Got key:  102
+whatToChat /leave
+'numpad6'
+'numpad6'
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+Got key:  102
+whatToChat /leave
+'numpad6'
+'numpad6'
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+Got key:  102
+whatToChat /leave
+'numpad6'
+'numpad6'
+Got key:  102
+whatToChat /leave
+'numpad6'
+'numpad6'
+Got key:  102
+whatToChat /leave
+'numpad6'
+'numpad6'
+Got key:  102
+whatToChat /leave
+'numpad6'
+'numpad6'
+Got key:  102
+whatToChat /leave
+'numpad6'
+'numpad6'
+Got key:  102
+whatToChat /leave
+'numpad6'
+'numpad6'
+Got key:  102
+whatToChat /leave
+'numpad6'
+'numpad6'
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+
+ |Focus |  False  | 
+
+
+
+ |Focus |  True  | 
+ |LClick|  0 CPS | 
+ |RClick|  0 CPS | 
+Press F4 to continue...
+pp  I/O operation on closed file.

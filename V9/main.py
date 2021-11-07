@@ -10,6 +10,9 @@ import win32con
 from time import perf_counter, sleep
 from os import system as OsCmd
 from chat import onChatMessage
+import sys
+# sys.stdout = open("log.txt", 'a')
+# sys.stderr = open("log.txt", 'a')
 
 lastLeftClick = perf_counter()
 lastRightClick = perf_counter()
@@ -161,7 +164,6 @@ def more():
         newFrame += line1
         newFrame += line2
         newFrame += line3
-        newFrame += ">>> "
 
         if newFrame != ConsoleScreen:
             ConsoleScreen = newFrame
@@ -177,7 +179,8 @@ def more():
     elif winAPIIn.getKeyState(0x71):
         # F2
         # sleep(7/1000.0)
-        minecraftAPI.getInventoryPos()
+        pass
+        # minecraftAPI.getInventoryPos()
         
     else:
         from chat import WhatToChat
@@ -200,10 +203,11 @@ id2 = setInterval(RightClick, 1000.0/16, randomMs=1000/13-1000/15)
 id3 = setInterval(zoom, 16.6)
 id4 = setInterval(more, 33.3, daemon=False)
 id5 = minecraftAPI.onChatMessage(onChatMessage)
-Thread(target=console, daemon=True).start()
+# Thread(target=console, daemon=True).start()
 init()
     
 def AI():
     import item
     
 Thread(target=AI, daemon=True).start()
+O_Sound.StartSound.play()

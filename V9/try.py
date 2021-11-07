@@ -9,3 +9,4 @@ print(sys.__stdout__)
 0/0
 sys.stdout = sys.__stdout__
 print("4")
+

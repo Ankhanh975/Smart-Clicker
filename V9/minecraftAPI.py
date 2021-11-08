@@ -16,7 +16,11 @@ class onChatMessage():
         self.line = ""
         self.callback = callback
         Thread(target=self.loop).start()
-        self.f = open(self.file, "r")
+        try:
+            self.f = open(self.file, "r")
+        except Exception as p:
+            print(p)
+            return
         self.id = setInterval(self.loop, 1000.0/40)
 
     def loop(self):

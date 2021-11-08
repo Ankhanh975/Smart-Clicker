@@ -62,7 +62,7 @@ def click(x, y):
 
     x, y = PosOfEachSlot[x][y]
     win32api.SetCursorPos((x, y))
-    winAPIOut.fastclick(duration=1/150)
+    winAPIOut.fastclick(duration=1.0/150)
 
 
 def more():
@@ -102,7 +102,7 @@ def more():
 
 
 O_Sound.ErrorSound.play()
-id4 = setInterval(more, 33.3, blocking=True)
+id = setInterval(more, 33.3, blocking=True)
 
 
 # 32 la bàn / 157

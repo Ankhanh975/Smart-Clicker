@@ -23,6 +23,28 @@ def LeftClick():
     # print("LeftClick")
 
     if not minecraftAPI.isFocused():
+        id1.FPS = 10
+    elif not winAPIIn.getKeyState(0x04):
+        # If "mbutton" is NOT pressed
+        id1.FPS = 120
+    else:
+        id1.FPS = 17
+        lastLeftClick = perf_counter()
+        winAPIOut.fastclick()
+        
+    while True:
+
+        sleep(1/120)
+        if winAPIIn.getKeyState(0x04):
+            if minecraftAPI.isFocused():
+                break
+
+    
+def LeftClick():
+    global lastLeftClick
+    # print("LeftClick")
+
+    if not minecraftAPI.isFocused():
         return
     while True:
         # If "mbutton" is NOT pressed
@@ -34,7 +56,6 @@ def LeftClick():
 
     lastLeftClick = perf_counter()
     winAPIOut.fastclick()
-
 
 def RightClick():
     global lastRightClick

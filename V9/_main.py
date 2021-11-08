@@ -41,19 +41,24 @@ class setInterval:
                              daemon=daemon, kwargs=kwargs).start()
 
     def __setInterval(self):
-        while self.running == True:
+        while True:
             self.FPS = self.clock.get_fps()
             self.FPS = round(self.FPS)
             # Make interval more random.
-
             randomSleepTime = uniform(0, self.randomMs)
             self.clock.tick(1.0/(self.interval+randomSleepTime))
-            self.callback(*self.args, **self.kwargs)
             # print("Interval", randomSleepTime, 1.0 /
             #       (self.interval+randomSleepTime))
 
+            if self.running == True:
+
+                self.callback(*self.args, **self.kwargs)
+
     def stop(self):
         self.running = False
+
+    def continue_(self):
+        self.running = True
 # class OnChatMessage():
 #     file = "C:\\Users\\Admin\\AppData\\Roaming\\.minecraft\\logs\\latest.log"
 #     sleepTime = 0

@@ -26,9 +26,9 @@ class onChatMessage():
     def loop(self):
         try:
             self.line = self.f.readline()
-
+    
             # Sleep for 1/40 seconds if not reading anything new.
-            while self.line != "":
+            while self.line != "" :
                 if "[Client thread/INFO]: [CHAT]" in self.line:
 
                     self.line = self.line.replace(
@@ -41,8 +41,11 @@ class onChatMessage():
             print("pp ", p)
 
     def stop(self):
-        self.f.close()
+        print("Mincraft STop")
         self.id.stop()
+        self.f.close()
+        print("Mincraft STop")
+        
 
 
 def isFocused():

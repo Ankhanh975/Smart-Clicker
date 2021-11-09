@@ -38,7 +38,7 @@ class setInterval:
 
         else:
             threading.Thread(target=self.__setInterval,
-                             daemon=daemon, kwargs=kwargs).start()
+                             daemon=daemon).start()
 
     def __setInterval(self):
         while True:
@@ -53,7 +53,8 @@ class setInterval:
             if self.running == True:
 
                 self.callback(*self.args, **self.kwargs)
-
+            else:
+                break
     def stop(self):
         self.running = False
 

@@ -1,7 +1,5 @@
 # cd C:\src\Python\Smart Clicker\V9 && py "C:\src\Python\Smart Clicker\V9\main.py"
 
-
-
 import minecraftAPI
 import winAPIOut
 import winAPIIn
@@ -26,9 +24,10 @@ def LeftClick():
     if not minecraftAPI.isFocused():
         sleep(1/120)
         return
+
+
     while True:
         # If "mbutton" is NOT pressed
-
         sleep(1/120)
         if winAPIIn.getKeyState(0x04):
             if minecraftAPI.isFocused():
@@ -51,29 +50,6 @@ def RightClick():
                 break
     lastRightClick = perf_counter()
     winAPIOut.fastclick(button="rbutton")
-# def LeftClick():
-#     global lastLeftClick
-#     # print("LeftClick")
-
-#     if not minecraftAPI.isFocused():
-#         return
-#     elif "mbutton" not in winAPIIn.getMouseState():
-#         return
-#     lastLeftClick = perf_counter()
-#     winAPIOut.fastclick()
-
-
-# def RightClick():
-#     global lastRightClick
-#     # print("RightClick")
-#     if not minecraftAPI.isFocused():
-#         return
-#     elif winAPIIn.getKeyState(0x43) == None:
-#         # If "c" is not pressed
-#         return
-#     lastRightClick = perf_counter()
-#     winAPIOut.fastclick(button="rbutton")
-
 
 inzoom = False
 
@@ -143,11 +119,12 @@ ConsoleScreen = ""
 def more():
     global ConsoleScreen
     # run 30 time a second
-    if winAPIIn.getKeyState(0x73) != None:
+    if winAPIIn.getKeyState(0x73):
         # Pressed F4
         O_Sound.ExitSound.play()
 
         print("Press F4 to continue...")
+        id4.stop()
         for id in (id1, id2, id3, id4, id5):
             id.stop()
         # sleep(7/60)
@@ -212,7 +189,7 @@ id2 = setInterval(RightClick, 1000.0/16, randomMs=1000/13-1000/15)
 id3 = setInterval(zoom, 16.6)
 id4 = setInterval(more, 33.3, daemon=False)
 id5 = minecraftAPI.onChatMessage(onChatMessage)
-# Thread(target=console, daemon=True).start()
+Thread(target=console, daemon=True).start()
 init()
 
 

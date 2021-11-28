@@ -30,8 +30,8 @@ def __getWindowName(windowId):
 def getActiveWindowName():
     return __getWindowName(GetForegroundWindow())
 
-# def getActiveWindowName():
-#     return GetWindowText(GetForegroundWindow())
+def getActiveWindowName():
+    return GetWindowText(GetForegroundWindow())
 
 
 def getMonitorSize():

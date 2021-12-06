@@ -1,5 +1,5 @@
 # cd C:\src\Python\Smart Clicker\V9 && py "C:\src\Python\Smart Clicker\V9\main.py"
-
+from Lib import _List
 import minecraftAPI
 import winAPIOut
 import winAPIIn
@@ -108,9 +108,9 @@ def init():
         sleep(4)
         ThreadExit()  # Stop everything because no thread started yet
 
-    OsCmd("title "+"Auto Clicker")
-    OsCmd("color 2d")
-    resizeConsole()
+    # OsCmd("title "+"Auto Clicker")
+    # OsCmd("color 2d")
+    # resizeConsole()
 
 
 ConsoleScreen = ""
@@ -169,13 +169,13 @@ def more():
 
     else:
         from chat import WhatToChat
-
         numpad = [0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69]
         for keyCode in numpad:
             if winAPIIn.getKeyState(keyCode):
-                print("Got key: ", keyCode)
+                
+                print("Got key: ",_List.VK_CODE_REVERSE[keyCode] )
                 whatToChat = WhatToChat(keyCode-0x60)
-                print("whatToChat", whatToChat)
+                print("whatToChat:", whatToChat)
                 minecraftAPI.chat(whatToChat)
                 # release key pressed
                 keybd_event(keyCode, 0, win32con.KEYEVENTF_KEYUP, 0)

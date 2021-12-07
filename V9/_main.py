@@ -7,7 +7,7 @@ import threading
 from random import uniform
 from pygame.time import Clock as pygameClock
 
-
+# setTimeout, setInterval is idea from javascript asynchronously way of work
 def setTimeout(callback, ms):
     x = threading .Timer(ms / 1000.0, callback)
     x.start()

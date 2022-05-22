@@ -30,19 +30,23 @@ def fastclick(button, x=None, y=None, duration = 0.005, Global_MousePos=[]): #Cl
             __Click(_ButtonDown, duration, _ButtonUp)
     else:
         __Click(_ButtonDown, duration, _ButtonUp)
-
-def on_click(x, y, button, pressed):
+import time
+while True:
+    time.sleep(10)
+    fastclick("lbutton")
+    print("click")
+# def on_click(x, y, button, pressed):
     
-    print(str(button))
-    if pressed:
-        if str(button)=="Button.right":
-            time.sleep(1/20)
-            fastclick("lbutton")
+#     print(str(button))
+#     if pressed:
+#         if str(button)=="Button.right":
+#             time.sleep(1/20)
+#             fastclick("lbutton")
 
 
-    #return False # Stop listener
+#     #return False # Stop listener
 
-# Collect events until released
-with Listener(
-        on_click=on_click) as listener:
-    listener.join()
+# # Collect events until released
+# with Listener(
+#         on_click=on_click) as listener:
+#     listener.join()

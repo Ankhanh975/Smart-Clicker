@@ -108,9 +108,9 @@ def init():
         sleep(4)
         ThreadExit()  # Stop everything because no thread started yet
 
-    # OsCmd("title "+"Auto Clicker")
-    # OsCmd("color 2d")
-    # resizeConsole()
+    OsCmd("title "+"Auto Clicker")
+    OsCmd("color 2d")
+    resizeConsole()
 
 
 ConsoleScreen = ""

@@ -6,7 +6,10 @@ def terminal(command):
     print("command", command)
     os.system(command)
 
-
+def terminal_with_respone(command):
+    terminal(command)
+    respone=""
+    return respone
 def click(state, window=None):
     opt = ""
     if window:
@@ -76,7 +79,7 @@ def mousescroll(dx, window=None):
 
 
 def get_mincraft_window_id() -> int:
-    return
+    return None
 
 
 # import mouse

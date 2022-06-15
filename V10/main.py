@@ -4,14 +4,17 @@ import random
 import time
 # import pyautogui
 
-"home/join/.minecraft/logs/latest.log"
-terminal(f"xdotool getmouselocation")
+# "home/join/.minecraft/logs/latest.log"
+# terminal(f"xdotool getmouselocation")
 
+def minecraft_terminal(code):
+	pass
 def scan_window():
 	all=[]
 	while True:
 		terminal_with_respone(f"xdotool getmouselocation")
-		
+		if "Minecraft" in minecraft_window:
+			pass
 def start_minecraft():
 	minecraft_window = terminal(f"xdotool windowfocus")
 	terminal(f"java -jar Shiginima\ Launcher.jar")

@@ -1,15 +1,24 @@
-
 import os
+import subprocess
 
 
 def terminal(command):
     print("command", command)
     os.system(command)
+    # subprocess.call('echo "I like potatos"', shell=True)
+    # subprocess.call(['echo', 'I like potatos'])
 
-def terminal_with_respone(command):
-    terminal(command)
-    respone=""
-    return respone
+def terminal_with_respone(cmd):
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE)
+
+    o, e = proc.communicate()
+
+    return ['Output: ' + o.decode('ascii'),
+            'Error: ' + e.decode('ascii'),
+            'code: ' + str(proc.returncode)]
+
+
 def click(state, window=None):
     opt = ""
     if window:
